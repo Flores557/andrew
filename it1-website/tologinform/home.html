@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IT1 Platform</title>
+    <link rel="icon" type="image/x-icon" href="../images/itlogo-modified.png" />
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#4f46e5", secondary: "#6366f1" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
+    <style>
+      :where([class^="ri-"])::before {
+        content: "\f3c2";
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f9fafb;
+      }
+      .nav-item {
+        position: relative;
+      }
+      .nav-item::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 0;
+        background-color: #4f46e5;
+        transition: width 0.3s ease;
+      }
+      .nav-item.active::after,
+      .nav-item:hover::after {
+        width: 100%;
+      }
+      .gallery-item {
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+      .gallery-item:hover {
+        transform: scale(1.03);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+      .gallery-item img {
+        transition: transform 0.5s ease;
+      }
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      .section {
+        display: none;
+      }
+      .section.active {
+        display: block;
+      }
+      .mobile-menu {
+        display: none;
+      }
+      .mobile-menu.active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+    <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
+      <div class="container mx-auto px-4 py-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <a href="#" class="flex items-center">
+              <span class="text-2xl font-['Pacifico'] text-primary">G12</span>
+              <span class="ml-2 text-lg font-semibold text-gray-800">IT1</span>
+            </a>
+          </div>
+          <div class="flex items-center space-x-8">
+            <nav class="hidden md:flex items-center space-x-8">
+              <a
+                href="#gallery"
+                class="nav-item active text-gray-800 hover:text-primary transition-colors"
+                >Gallery</a
+              >
+
+              <a
+                href="#study"
+                class="nav-item text-gray-800 hover:text-primary transition-colors"
+                >Study</a
+              >
+              <a
+                href="../da.html"
+                class="nav-item text-gray-800 hover:text-primary transition-colors"
+                >School</a
+              >
+              <a
+                href="#"
+                id="logoutButton"
+                class="text-gray-800 hover:text-primary transition-colors flex items-center">
+                <span class="mr-1">Logout</span>
+                <div class="w-5 h-5 flex items-center justify-center">
+                  <i class="ri-logout-box-line"></i>
+                </div>
+              </a>
+            </nav>
+            <div
+              class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden">
+              <img
+                src="../images/wowers.jpg"
+                alt="Profile"
+                class="w-full h-full object-cover" />
+            </div>
+            <button
+              id="mobileMenuButton"
+              class="md:hidden w-10 h-10 flex items-center justify-center">
+              <div class="w-6 h-6 flex items-center justify-center">
+                <i class="ri-menu-line text-xl"></i>
+              </div>
+            </button>
+          </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu md:hidden mt-4 hidden">
+          <div class="flex flex-col space-y-4">
+            <a
+              href="#gallery"
+              class="nav-item active text-gray-800 hover:text-primary transition-colors py-2"
+              >Gallery</a
+            >
+            <a
+              href="../da.html"
+              class="nav-item text-gray-800 hover:text-primary transition-colors py-2"
+              >School</a
+            >
+            <a
+              href="#study"
+              class="nav-item text-gray-800 hover:text-primary transition-colors py-2"
+              >Study</a
+            >
+            <a
+              href="#"
+              id="mobileLogoutButton"
+              class="text-gray-800 hover:text-primary transition-colors flex items-center py-2">
+              <span class="mr-1">Logout</span>
+              <div class="w-5 h-5 flex items-center justify-center">
+                <i class="ri-logout-box-line"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content -->
+
+    <main class="container mx-auto px-4 pt-24 pb-12">
+      <!-- Gallery Section -->
+      <section id="gallery" class="section active">
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold text-gray-900">Gallery</h1>
+          <p class="text-gray-600 mt-2">
+            These are the pictures in IT that are really chaotic, and the
+            pictures that are just random.
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- Study Items -->
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/exam1.jpg"
+                alt="PHP"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">SMILE BEFORE EXAM GOYS</h3>
+              <p class="text-sm text-gray-500 mt-1">HAHAHAHA</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/exam2.jpg"
+                alt="Switch"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">GRABE BAY</h3>
+              <p class="text-sm text-gray-500 mt-1">KAYA PA?</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/naols.jpg"
+                alt="Loops"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">AYYY</h3>
+              <p class="text-sm text-gray-500 mt-1">SANAOL NALANG</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/HALA.jpg"
+                alt="Function"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">HALA KINSA MANI</h3>
+              <p class="text-sm text-gray-500 mt-1">IKAW REXAM HA</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!--DRE TAMAN-->
+        <!---->
+        <!--dre sugod-->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- Study Items -->
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/lala.jpg"
+                alt="PHP"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">NAUNSA NAMAN NA</h3>
+              <p class="text-sm text-gray-500 mt-1">
+                PASAR GYAPON OI ABI PALANG
+              </p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/OKY RAMO.jpg"
+                alt="Switch"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">UNSA MANA NAA DARA BAY?</h3>
+              <p class="text-sm text-gray-500 mt-1">OKY RAMO?</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/HYS.jpg"
+                alt="Loops"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">KA CUTE</h3>
+              <p class="text-sm text-gray-500 mt-1">SAAMONG IRO</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/TULANGS.jpg"
+                alt="Function"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">HAHAHAHAHAHAHA</h3>
+              <p class="text-sm text-gray-500 mt-1">SWEEET</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!---->
+        <!--dre sugod-->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- Study Items -->
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/pic1.jpg"
+                alt="PHP"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">GRABE KA SIROK</h3>
+              <p class="text-sm text-gray-500 mt-1">LALA</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/pic2.jpg"
+                alt="Switch"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">GRABE KA MGA CUTE OI</h3>
+              <p class="text-sm text-gray-500 mt-1">LAHI RAGYUD</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/pic3.jpg"
+                alt="Loops"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">OKY RAMO?</h3>
+              <p class="text-sm text-gray-500 mt-1">MAY GANI NAKA ULI PA</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/pic4.jpg"
+                alt="Function"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">ENJOY KAY BAY</h3>
+              <p class="text-sm text-gray-500 mt-1">SAYANG WALA KO KA UBAN</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- Study Items -->
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/pic5.jpg"
+                alt="PHP"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">GRABE SMILE GYUD</h3>
+              <p class="text-sm text-gray-500 mt-1">UBANA KO NINYO SUNOD🥰</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/pic6.jpg"
+                alt="Switch"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">PRACTICE UNTA UG ARNIS</h3>
+              <p class="text-sm text-gray-500 mt-1">KASO NAAY NAG DULA HAHYS</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/pic7.jpg"
+                alt="Loops"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">GIRLS: PAG TARUNG MO BA</h3>
+              <p class="text-sm text-gray-500 mt-1">BOYS: LAGI PAG DALI MO</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/pic8.jpg"
+                alt="Function"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">PASUBA</h3>
+              <p class="text-sm text-gray-500 mt-1">PALAYO SA EXAM</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!--DRE TAMAN-->
+        <!---->
+        <!--dre sugod-->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- Study Items -->
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/pic9.jpg"
+                alt="PHP"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">GRABE BAY</h3>
+              <p class="text-sm text-gray-500 mt-1">LIGO GYUD</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/pic10.jpg"
+                alt="Switch"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">"HOY BADE"</h3>
+              <p class="text-sm text-gray-500 mt-1">BADE: UNSA?</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/pic11.jpg"
+                alt="Loops"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">DAI KABALO KA DAI</h3>
+              <p class="text-sm text-gray-500 mt-1">UNSA UNSA?</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/pic12.jpg"
+                alt="Function"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">PINAKA ISOG SA IT1</h3>
+              <p class="text-sm text-gray-500 mt-1">JAMERO</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!---->
+        <!--dre sugod-->
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- Study Items -->
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/pic13.jpg"
+                alt="PHP"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">CONGRATS</h3>
+              <p class="text-sm text-gray-500 mt-1">GRABE GYUD NING IT</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="../image/pic14.jpg"
+                alt="Switch"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">LAST PRACTICE SA ARNIS</h3>
+              <p class="text-sm text-gray-500 mt-1">BAHALA NANI AH</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <video
+                src="../image/vid1.mp4"
+                class="w-full h-full object-cover object-top"
+                controls
+                onclick="openModal(this.src)"></video>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">BAHALAG MGA UNSA</h3>
+              <p class="text-sm text-gray-500 mt-1">BASTA MAKA LIGO</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <video
+                src="../image/vid2.mp4"
+                class="w-full h-full object-cover object-top"
+                controls
+                onclick="openModal(this.src)"></video>
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">PAG WAY LINGAW</h3>
+              <p class="text-sm text-gray-500 mt-1">MANG HITS NALANG</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span></span>
+                <div
+                  class="w-4 h-4 ml-1 flex items-center justify-center"></div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!--DRE TAMAN-->
+      </section>
+
+      <!-- Study Section -->
+      <section id="study" class="section">
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold text-gray-900">Study PHP</h1>
+          <p class="text-gray-600 mt-2">
+            Educational resources to enhance your knowledge
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- Study Items -->
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://www.detriamelia.com/wp-content/uploads/2020/01/Understanding-PHP-Condition-If-Else-Elseif-Statements.jpg"
+                alt="PHP"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">IF ELSE STATEMENT</h3>
+              <p class="text-sm text-gray-500 mt-1">
+                Study PHP IF ELSE STATEMENT
+              </p>
+              <a
+                href="https://www.w3schools.com/php/php_if_else.asp"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span>Read more</span>
+                <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://i.ytimg.com/vi/NP6tBCZfXls/maxresdefault.jpg"
+                alt="Switch"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">SWITCH</h3>
+              <p class="text-sm text-gray-500 mt-1">Study PHP SWITCH</p>
+              <a
+                href="https://www.w3schools.com/php/php_switch.asp"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span>Read more</span>
+                <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://laravelplug.com/wp-content/uploads/2024/01/PHP-Nested-Loops.png"
+                alt="Loops"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">LOOPS</h3>
+              <p class="text-sm text-gray-500 mt-1">Study PHP LOOPS</p>
+              <a
+                href="https://www.w3schools.com/php/php_looping.asp"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span>Read more</span>
+                <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://i.ytimg.com/vi/HvxQww-7NGA/maxresdefault.jpg"
+                alt="Function"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">FUNCTION</h3>
+              <p class="text-sm text-gray-500 mt-1">Study PHP FUNCTION</p>
+              <a
+                href="https://www.w3schools.com/php/php_functions.asp"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span>Read more</span>
+                <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- Study Items -->
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://i.ytimg.com/vi/wLoPGWwMamc/maxresdefault.jpg"
+                alt="PHP"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">ARRAY</h3>
+              <p class="text-sm text-gray-500 mt-1">Study PHP IF ARRAY</p>
+              <a
+                href="https://www.w3schools.com/php/php_arrays.asp"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span>Read more</span>
+                <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://slideplayer.com/slide/16663992/96/images/19/PHP+Superglobals.jpg"
+                alt="Switch"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">SUPPER GLOBALS</h3>
+              <p class="text-sm text-gray-500 mt-1">Study PHP SUPPER GLOBALS</p>
+              <a
+                href="https://www.w3schools.com/php/php_superglobals_globals.asp"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span>Read more</span>
+                <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://appdividend.com/wp-content/uploads/2019/08/PHP-Regular-Expression-Example-Regular-Expressions-in-PHP-Tutorial.png"
+                alt="Loops"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">REGEX</h3>
+              <p class="text-sm text-gray-500 mt-1">Study PHP REGEX</p>
+              <a
+                href="https://www.w3schools.com/php/php_regex.asp"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span>Read more</span>
+                <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://i.ytimg.com/vi/n2oWBRTeDyg/maxresdefault.jpg"
+                alt="Function"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">DATA TYPES</h3>
+              <p class="text-sm text-gray-500 mt-1">Study PHP VARIABLES</p>
+              <a
+                href="https://www.w3schools.com/php/php_variables.asp"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span>Read more</span>
+                <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="mb-8">
+          <h1 class="text-3xl font-bold text-gray-900">Study SQL</h1>
+          <p class="text-gray-600 mt-2">
+            Educational resources to enhance your knowledge
+          </p>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- Study Items -->
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://simplycoding.in/wp-content/uploads/2020/12/Screenshot_20201209-113651__01.jpg"
+                alt="PHP"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">THE SQL SYNTAX</h3>
+              <p class="text-sm text-gray-500 mt-1">Study SQL SYNTAX</p>
+              <a
+                href="https://www.w3schools.com/sql/sql_syntax.asp"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span>Read more</span>
+                <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://www.pragimtech.com/blog/contribute/article_images/1220210427134848/sql-server-where-id-in-list.jpg"
+                alt="Switch"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">THE SQL WHERE</h3>
+              <p class="text-sm text-gray-500 mt-1">Study SQL WHERE</p>
+              <a
+                href="https://www.w3schools.com/sql/sql_where.asp"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span>Read more</span>
+                <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://s33046.pcdn.co/wp-content/uploads/2023/03/sql-insert-multiple-rows-using-the-insert-into-val.png"
+                alt="Loops"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">THE SQL INSERT</h3>
+              <p class="text-sm text-gray-500 mt-1">Study SQL INSERT</p>
+              <a
+                href="https://www.w3schools.com/sql/sql_insert.asp"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span>Read more</span>
+                <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://www.wikitechy.com/cdn/tutorials/sql/sql-order-by-2.png"
+                alt="Function"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">THE SQL ORDER BY</h3>
+              <p class="text-sm text-gray-500 mt-1">Study SQL ORDER BY</p>
+              <a
+                href="https://www.w3schools.com/sql/sql_orderby.asp"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span>Read more</span>
+                <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <!-- Study Items -->
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://i.ytimg.com/vi/wLoPGWwMamc/maxresdefault.jpg"
+                alt="PHP"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">ARRAY</h3>
+              <p class="text-sm text-gray-500 mt-1">Study PHP IF ARRAY</p>
+              <a
+                href="https://www.w3schools.com/php/php_arrays.asp"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span>Read more</span>
+                <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://slideplayer.com/slide/16663992/96/images/19/PHP+Superglobals.jpg"
+                alt="Switch"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">SUPPER GLOBALS</h3>
+              <p class="text-sm text-gray-500 mt-1">Study PHP SUPPER GLOBALS</p>
+              <a
+                href="https://www.w3schools.com/php/php_superglobals_globals.asp"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span>Read more</span>
+                <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://appdividend.com/wp-content/uploads/2019/08/PHP-Regular-Expression-Example-Regular-Expressions-in-PHP-Tutorial.png"
+                alt="Loops"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">REGEX</h3>
+              <p class="text-sm text-gray-500 mt-1">Study PHP REGEX</p>
+              <a
+                href="https://www.w3schools.com/php/php_regex.asp"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span>Read more</span>
+                <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="gallery-item bg-white rounded shadow-sm overflow-hidden">
+            <div class="h-48 overflow-hidden">
+              <img
+                src="https://i.ytimg.com/vi/n2oWBRTeDyg/maxresdefault.jpg"
+                alt="Function"
+                class="w-full h-full object-cover object-top"
+                onclick="openModal(this.src)" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-medium text-gray-900">DATA TYPES</h3>
+              <p class="text-sm text-gray-500 mt-1">Study PHP VARIABLES</p>
+              <a
+                href="https://www.w3schools.com/php/php_variables.asp"
+                class="inline-flex items-center text-sm text-primary mt-2">
+                <span>Read more</span>
+                <div class="w-4 h-4 ml-1 flex items-center justify-center">
+                  <i class="ri-arrow-right-line"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Study Section -->
+
+        <!-- Study Section -->
+      </section>
+    </main>
+
+    <!-- Logout Confirmation Modal -->
+    <div
+      id="logoutModal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+      <div class="bg-white rounded-lg p-6 max-w-sm w-full">
+        <h3 class="text-xl font-semibold text-gray-900 mb-4">Confirm Logout</h3>
+        <p class="text-gray-600 mb-6">
+          Are you sure you want to log out of your account?
+        </p>
+        <div class="flex justify-end space-x-3">
+          <button
+            id="cancelLogout"
+            class="px-4 py-2 bg-gray-100 text-gray-700 rounded-button hover:bg-gray-200 transition-colors whitespace-nowrap">
+            Cancel
+          </button>
+          <button
+            id="confirmLogout"
+            class="px-4 py-2 bg-primary text-white rounded-button hover:bg-opacity-90 transition-colors whitespace-nowrap">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mobile menu toggle functionality
+        const mobileMenuButton = document.getElementById("mobileMenuButton");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+          mobileMenu.classList.toggle("active");
+        });
+
+        // Navigation functionality
+        const navItems = document.querySelectorAll(".nav-item");
+        const mobileNavItems = document.querySelectorAll("#mobileMenu a");
+        const sections = document.querySelectorAll(".section");
+
+        function setActiveSection(targetId) {
+          // Hide all sections
+          sections.forEach((section) => {
+            section.classList.remove("active");
+          });
+
+          // Show corresponding section
+          document.getElementById(targetId).classList.add("active");
+
+          // Update active state in navigation
+          navItems.forEach((item) => {
+            item.classList.remove("active");
+            if (item.getAttribute("href") === `#${targetId}`) {
+              item.classList.add("active");
+            }
+          });
+
+          mobileNavItems.forEach((item) => {
+            item.classList.remove("active");
+            if (item.getAttribute("href") === `#${targetId}`) {
+              item.classList.add("active");
+            }
+          });
+
+          // Close mobile menu if open
+          mobileMenu.classList.add("hidden");
+          mobileMenu.classList.remove("active");
+        }
+
+        // Desktop nav items
+        navItems.forEach((item) => {
+          item.addEventListener("click", function (e) {
+            // Skip navigation handling for external links
+            if (this.getAttribute("href").startsWith("../")) {
+              return;
+            }
+            e.preventDefault();
+            const targetId = this.getAttribute("href").substring(1);
+            setActiveSection(targetId);
+          });
+        });
+
+        // Mobile nav items
+        mobileNavItems.forEach((item) => {
+          item.addEventListener("click", function (e) {
+            // Skip navigation handling for external links
+            if (this.getAttribute("href").startsWith("../")) {
+              return;
+            }
+            e.preventDefault();
+            const targetId = this.getAttribute("href").substring(1);
+            setActiveSection(targetId);
+          });
+        });
+
+        // Logout functionality
+        const logoutButton = document.getElementById("logoutButton");
+        const mobileLogoutButton =
+          document.getElementById("mobileLogoutButton");
+        const logoutModal = document.getElementById("logoutModal");
+        const cancelLogout = document.getElementById("cancelLogout");
+        const confirmLogout = document.getElementById("confirmLogout");
+
+        function showLogoutModal() {
+          logoutModal.classList.remove("hidden");
+        }
+
+        function hideLogoutModal() {
+          logoutModal.classList.add("hidden");
+        }
+
+        logoutButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          showLogoutModal();
+        });
+
+        mobileLogoutButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          showLogoutModal();
+        });
+
+        cancelLogout.addEventListener("click", hideLogoutModal);
+
+        confirmLogout.addEventListener("click", function () {
+          // In a real app, you would redirect to logout endpoint
+          alert("You have been logged out successfully.");
+          hideLogoutModal();
+          window.location.href = "../index.html";
+        });
+
+        // Close modal when clicking outside
+        logoutModal.addEventListener("click", function (e) {
+          if (e.target === logoutModal) {
+            hideLogoutModal();
+          }
+        });
+
+        // Practice section item click handler
+        const practiceItems = document.querySelectorAll(
+          "#practice .gallery-item"
+        );
+        practiceItems.forEach((item) => {
+          item.addEventListener("click", function () {
+            const title = this.querySelector("h3").textContent;
+            alert(`Starting practice exercise: ${title}`);
+          });
+        });
+      });
+      function openModal(src) {
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImg");
+        modalImg.src = src;
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+      }
+
+      function closeModal() {
+        const modal = document.getElementById("imageModal");
+        modal.classList.remove("flex");
+        modal.classList.add("hidden");
+      }
+    </script>
+    <div
+      id="imageModal"
+      class="fixed inset-0 bg-black bg-opacity-80 hidden items-center justify-center z-50">
+      <span
+        onclick="closeModal()"
+        class="absolute top-4 right-6 text-white text-4xl cursor-pointer"
+        >&times;</span
+      >
+      <img id="modalImg" class="max-w-full max-h-full rounded shadow-lg" />
+    </div>
+  </body>
+</html>

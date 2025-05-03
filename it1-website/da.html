@@ -1,0 +1,1749 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Philippine Southfield School</title>
+    <link rel="icon" type="image/x-icon" href="school/images/pss.png" />
+    <style>
+      /* Global Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: #f5f5f5;
+        color: #333;
+        line-height: 1.6;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Animation Classes */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInFromLeft {
+        from {
+          transform: translateX(-50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInFromRight {
+        from {
+          transform: translateX(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInFromBottom {
+        from {
+          transform: translateY(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes zoomIn {
+        from {
+          transform: scale(0.95);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      .animate-fade {
+        animation: fadeIn 1s ease-out forwards;
+      }
+
+      .animate-left {
+        animation: slideInFromLeft 0.8s ease-out forwards;
+      }
+
+      .animate-right {
+        animation: slideInFromRight 0.8s ease-out forwards;
+      }
+
+      .animate-bottom {
+        animation: slideInFromBottom 0.8s ease-out forwards;
+      }
+
+      .animate-zoom {
+        animation: zoomIn 0.8s ease-out forwards;
+      }
+
+      .delay-1 {
+        animation-delay: 0.2s;
+      }
+      .delay-2 {
+        animation-delay: 0.4s;
+      }
+      .delay-3 {
+        animation-delay: 0.6s;
+      }
+      .delay-4 {
+        animation-delay: 0.8s;
+      }
+      .delay-5 {
+        animation-delay: 1s;
+      }
+
+      /* Header Styles */
+      header {
+        background: linear-gradient(135deg, #0056b3, #003366);
+        color: white;
+        padding: 20px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out 0.2s forwards;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        opacity: 0;
+        animation: slideInFromLeft 0.8s ease-out 0.4s forwards;
+      }
+
+      .logo img {
+        height: 60px;
+        margin-right: 15px;
+        transition: transform 0.3s ease;
+      }
+
+      .logo:hover img {
+        transform: rotate(5deg) scale(1.05);
+      }
+
+      .logo-text h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+
+      .logo-text p {
+        font-size: 14px;
+        opacity: 0.9;
+      }
+
+      /* Navigation */
+      nav ul {
+        display: flex;
+        list-style: none;
+      }
+
+      nav ul li {
+        margin-left: 25px;
+        opacity: 0;
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+
+      nav ul li:nth-child(1) {
+        animation-delay: 0.5s;
+      }
+      nav ul li:nth-child(2) {
+        animation-delay: 0.6s;
+      }
+      nav ul li:nth-child(3) {
+        animation-delay: 0.7s;
+      }
+      nav ul li:nth-child(4) {
+        animation-delay: 0.8s;
+      }
+      nav ul li:nth-child(5) {
+        animation-delay: 0.9s;
+      }
+      nav ul li:nth-child(6) {
+        animation-delay: 1s;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        padding: 8px 12px;
+        border-radius: 4px;
+        position: relative;
+      }
+
+      nav ul li a::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background-color: #ff6b00;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      nav ul li a:hover::after {
+        width: 100%;
+      }
+
+      nav ul li a:hover {
+        color: #ff6b00;
+      }
+
+      /* Mobile Menu Button */
+      .menu-btn {
+        display: none;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        padding: 10px;
+        z-index: 1000;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: url("school/images/libre.jpg") no-repeat center center/cover;
+        height: 500px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 51, 102, 0.7);
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+        color: white;
+        max-width: 600px;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeIn 1s ease-out 0.5s forwards,
+          slideInFromBottom 1s ease-out 0.5s forwards;
+      }
+
+      .hero h2 {
+        font-size: 42px;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+
+      .btn {
+        display: inline-block;
+        background-color: #ff6b00;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: 0.5s;
+      }
+
+      .btn:hover::before {
+        left: 100%;
+      }
+
+      .btn:hover {
+        background-color: #e05d00;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      /* About Section */
+      .about {
+        padding: 80px 0;
+        background-color: white;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+        opacity: 0;
+        animation: fadeIn 1s ease-out 0.5s forwards;
+      }
+
+      .section-title h2 {
+        font-size: 36px;
+        color: #003366;
+        margin-bottom: 15px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title h2::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: #ff6b00;
+      }
+
+      .section-title p {
+        color: #666;
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
+      .about-content {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .about-text {
+        flex: 1;
+        opacity: 0;
+        transform: translateX(-20px);
+        animation: fadeIn 1s ease-out 0.7s forwards,
+          slideInFromLeft 1s ease-out 0.7s forwards;
+      }
+
+      .about-text h3 {
+        font-size: 24px;
+        color: #003366;
+        margin-bottom: 20px;
+      }
+
+      .about-text p {
+        margin-bottom: 15px;
+        color: #555;
+      }
+
+      .about-image {
+        flex: 1;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transform: translateX(20px);
+        animation: fadeIn 1s ease-out 0.7s forwards,
+          slideInFromRight 1s ease-out 0.7s forwards;
+      }
+
+      .about-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+
+      .about-image:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Gallery Section */
+      .gallery {
+        padding: 80px 0;
+        background-color: #f9f9f9;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 40px;
+      }
+
+      .gallery-item {
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        height: 250px;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 0.5s ease-out forwards,
+          slideInFromBottom 0.5s ease-out forwards;
+      }
+
+      /* Delay animations for gallery items */
+      .gallery-item:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .gallery-item:nth-child(2) {
+        animation-delay: 0.3s;
+      }
+      .gallery-item:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .gallery-item:nth-child(4) {
+        animation-delay: 0.5s;
+      }
+      .gallery-item:nth-child(5) {
+        animation-delay: 0.6s;
+      }
+      .gallery-item:nth-child(6) {
+        animation-delay: 0.7s;
+      }
+      .gallery-item:nth-child(7) {
+        animation-delay: 0.8s;
+      }
+      .gallery-item:nth-child(8) {
+        animation-delay: 0.9s;
+      }
+      .gallery-item:nth-child(9) {
+        animation-delay: 1s;
+      }
+      .gallery-item:nth-child(10) {
+        animation-delay: 1.1s;
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-item .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+        color: white;
+        padding: 20px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .gallery-item:hover .overlay {
+        opacity: 1;
+      }
+
+      .gallery-item .overlay h3 {
+        margin-bottom: 5px;
+        font-size: 18px;
+      }
+
+      .gallery-item .overlay p {
+        font-size: 14px;
+        opacity: 0.9;
+      }
+
+      /* Programs Section */
+      .programs {
+        padding: 80px 0;
+        background-color: white;
+      }
+
+      .programs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 40px;
+      }
+
+      .program-card {
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeIn 0.5s ease-out forwards,
+          slideInFromBottom 0.5s ease-out forwards;
+      }
+
+      /* Delay animations for program cards */
+      .program-card:nth-child(1) {
+        animation-delay: 0.3s;
+      }
+      .program-card:nth-child(2) {
+        animation-delay: 0.5s;
+      }
+      .program-card:nth-child(3) {
+        animation-delay: 0.7s;
+      }
+
+      .program-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .program-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .program-card:hover img {
+        transform: scale(1.05);
+      }
+
+      .program-content {
+        padding: 25px;
+      }
+
+      .program-content h3 {
+        font-size: 20px;
+        color: #003366;
+        margin-bottom: 15px;
+      }
+
+      .program-content p {
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+      /* Contact Section */
+      .contact {
+        padding: 80px 0;
+        background-color: #003366;
+        color: white;
+      }
+
+      .contact .section-title h2 {
+        color: white;
+      }
+
+      .contact .section-title p {
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .contact-content {
+        display: flex;
+        gap: 50px;
+        margin-top: 40px;
+      }
+
+      .contact-info {
+        flex: 1;
+        opacity: 0;
+        transform: translateX(-20px);
+        animation: fadeIn 1s ease-out 0.5s forwards,
+          slideInFromLeft 1s ease-out 0.5s forwards;
+      }
+
+      .contact-info h3 {
+        font-size: 24px;
+        margin-bottom: 20px;
+      }
+
+      .contact-info p {
+        margin-bottom: 15px;
+        opacity: 0.9;
+      }
+
+      .contact-info .info-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      .contact-info .info-item:hover {
+        transform: translateX(5px);
+      }
+
+      .contact-info .info-item i {
+        font-size: 20px;
+        margin-right: 15px;
+        color: #ff6b00;
+      }
+
+      .contact-form {
+        flex: 1;
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transform: translateX(20px);
+        animation: fadeIn 1s ease-out 0.5s forwards,
+          slideInFromRight 1s ease-out 0.5s forwards;
+      }
+
+      .contact-form h3 {
+        font-size: 24px;
+        color: #003366;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        color: #333;
+        font-weight: 500;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: #0056b3;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+      }
+
+      .form-group textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .contact-form .btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #002244;
+        color: white;
+        padding: 40px 0 20px;
+      }
+
+      .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        margin-bottom: 30px;
+      }
+
+      .footer-column {
+        flex: 1;
+        min-width: 250px;
+        opacity: 0;
+        animation: fadeIn 1s ease-out forwards;
+      }
+
+      /* Delay animations for footer columns */
+      .footer-column:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .footer-column:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+      .footer-column:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+      .footer-column:nth-child(4) {
+        animation-delay: 0.8s;
+      }
+
+      .footer-column h3 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .footer-column h3::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 40px;
+        height: 2px;
+        background-color: #ff6b00;
+      }
+
+      .footer-column p {
+        opacity: 0.8;
+        margin-bottom: 15px;
+        font-size: 14px;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 10px;
+      }
+
+      .footer-links a {
+        color: white;
+        opacity: 0.8;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 14px;
+        display: inline-block;
+      }
+
+      .footer-links a:hover {
+        opacity: 1;
+        transform: translateX(5px);
+        color: #ff6b00;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        color: white;
+        font-size: 18px;
+        transition: all 0.3s ease;
+      }
+
+      .social-links a:hover {
+        background-color: #ff6b00;
+        transform: translateY(-3px) scale(1.1);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 14px;
+        opacity: 0.7;
+      }
+
+      /* Modal for Gallery */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        overflow: auto;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .modal.show {
+        opacity: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-content {
+        margin: auto;
+        display: block;
+        max-width: 90%;
+        max-height: 90%;
+        margin-top: 50px;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+      }
+
+      .modal.show .modal-content {
+        transform: scale(1);
+      }
+
+      .modal-caption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        text-align: center;
+        color: #ccc;
+        padding: 10px 0;
+        height: 150px;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.3s ease 0.2s;
+      }
+
+      .modal.show .modal-caption {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+      }
+
+      .modal.show .close {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .close:hover {
+        color: #ff6b00;
+        transform: rotate(90deg);
+      }
+
+      /* Scroll Reveal Animation */
+      .reveal {
+        position: relative;
+        transform: translateY(50px);
+        opacity: 0;
+        transition: all 1s ease;
+      }
+
+      .reveal.active {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 992px) {
+        .about-content {
+          flex-direction: column;
+        }
+
+        .contact-content {
+          flex-direction: column;
+        }
+
+        .hero h2 {
+          font-size: 36px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: row;
+          text-align: left;
+        }
+
+        .logo {
+          margin-bottom: 0;
+          justify-content: flex-start;
+        }
+
+        /* Mobile Menu Styles */
+        .menu-btn {
+          display: block;
+        }
+
+        nav {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 80%;
+          max-width: 300px;
+          height: 100vh;
+          background: #002244;
+          padding: 80px 20px 20px;
+          transition: right 0.3s ease;
+          z-index: 999;
+        }
+
+        nav.active {
+          right: 0;
+        }
+
+        nav ul {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        nav ul li {
+          margin: 15px 0;
+          opacity: 1;
+          animation: none;
+        }
+
+        nav ul li a {
+          font-size: 18px;
+          padding: 10px 0;
+        }
+
+        .hero {
+          height: 400px;
+          text-align: center;
+        }
+
+        .hero-content {
+          max-width: 100%;
+          text-align: center;
+        }
+
+        .section-title h2 {
+          font-size: 30px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .gallery-grid {
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        }
+
+        .hero h2 {
+          font-size: 28px;
+        }
+
+        .hero p {
+          font-size: 16px;
+        }
+
+        .programs-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      /* Enhanced Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        overflow: auto;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .modal.show {
+        opacity: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-content-container {
+        position: relative;
+        max-width: 90%;
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .modal-content {
+        max-width: 100%;
+        max-height: 70vh;
+        object-fit: contain;
+        margin-bottom: 15px;
+        transform: scale(0.9);
+        transition: transform 0.3s ease;
+      }
+
+      .modal.show .modal-content {
+        transform: scale(1);
+      }
+
+      .modal-caption {
+        text-align: center;
+        color: white;
+        max-width: 80%;
+        padding: 10px 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.3s ease 0.2s;
+      }
+
+      .modal.show .modal-caption {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .modal-caption h3 {
+        font-size: 24px;
+        margin-bottom: 5px;
+      }
+
+      .modal-caption p {
+        font-size: 16px;
+        opacity: 0.8;
+      }
+
+      .close {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+        cursor: pointer;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+        z-index: 2;
+      }
+
+      .modal.show .close {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .close:hover {
+        color: #ff6b00;
+        transform: rotate(90deg);
+      }
+
+      /* Navigation arrows */
+      .modal-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: white;
+        font-size: 50px;
+        cursor: pointer;
+        padding: 15px;
+        user-select: none;
+        opacity: 0.7;
+        transition: opacity 0.3s;
+        z-index: 2;
+      }
+
+      .modal-nav:hover {
+        opacity: 1;
+      }
+
+      .prev {
+        left: 15px;
+      }
+
+      .next {
+        right: 15px;
+      }
+
+      /* Loading spinner */
+      .loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #ff6b00;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+        display: none;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: translate(-50%, -50%) rotate(0deg);
+        }
+        100% {
+          transform: translate(-50%, -50%) rotate(360deg);
+        }
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <div class="container header-content">
+        <div class="logo">
+          <img src="school/images/pss.png" alt="Philippine Southfield Logo" />
+          <div class="logo-text">
+            <h1>Philippine Southfield</h1>
+          </div>
+        </div>
+        <button class="menu-btn" id="menuBtn">
+          <i class="fas fa-bars"></i>
+        </button>
+        <nav id="mainNav">
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#programs">Programs</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#logout">Logout</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <h2>Shaping Future Leaders Through Quality</h2>
+        <p>
+          At Philippine Southfield, we provide a nurturing environment that
+          fosters academic excellence, character development, and holistic
+          growth for every student.
+        </p>
+        <a href="#contact" class="btn">Enroll Now</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="section-title">
+          <h2>About Our School</h2>
+          <p>
+            Philippine Southfield is a premier al institution committed to
+            developing well-rounded individuals prepared for the challenges of
+            tomorrow.
+          </p>
+        </div>
+        <div class="about-content">
+          <div class="about-text">
+            <h3>Our History and Mission</h3>
+            <p>
+              Founded 1995, Philippine Southfield has been at the forefront of
+              quality the region. Our mission is to provide a transformative
+              learning experience that equips students with knowledge, skills,
+              and values to succeed a rapidly changing world.
+            </p>
+            <p>
+              We believe fostering a love for learning, encouraging critical
+              thinking, and nurturing creativity every student. Our dedicated
+              faculty and staff are committed to creating an inclusive
+              environment where every child can thrive.
+            </p>
+            <p>
+              With state-of-the-art facilities and a comprehensive curriculum,
+              we prepare our students not just for academic success but for life
+              beyond the classroom.
+            </p>
+            <a href="#programs" class="btn">Learn About Our Programs</a>
+          </div>
+          <div class="about-image">
+            <img
+              src="school/images/palakasan.jpg"
+              alt="Philippine Southfield School Building" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+      <div class="container">
+        <div class="section-title">
+          <h2>School Gallery</h2>
+          <p>
+            Explore moments from our vibrant school community through these
+            captivating images.
+          </p>
+        </div>
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- Gallery items will be added dynamically with JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs" id="programs">
+      <div class="container">
+        <div class="section-title">
+          <h2>Our Academic Programs</h2>
+          <p>
+            We offer a diverse range of programs designed to meet the needs of
+            every learner at different stages of their al journey.
+          </p>
+        </div>
+        <div class="programs-grid">
+          <div class="program-card">
+            <img
+              src="https://images.unsplash.com/photo-1588072432836-e10032774350?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="Preschool Program" />
+            <div class="program-content">
+              <h3>Preschool</h3>
+              <p>
+                Our play-based learning approach helps young children develop
+                social, emotional, and cognitive skills a nurturing environment.
+              </p>
+              <a href="#" class="btn">Learn More</a>
+            </div>
+          </div>
+          <div class="program-card">
+            <img
+              src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="Elementary Program" />
+            <div class="program-content">
+              <h3>Elementary</h3>
+              <p>
+                A comprehensive program that builds strong foundations core
+                subjects while encouraging exploration and creativity.
+              </p>
+              <a href="#" class="btn">Learn More</a>
+            </div>
+          </div>
+          <div class="program-card">
+            <img
+              src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="High School Program" />
+            <div class="program-content">
+              <h3>High School</h3>
+              <p>
+                Rigorous academic preparation combined with leadership
+                development and extracurricular opportunities.
+              </p>
+              <a href="#" class="btn">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>Contact Us</h2>
+          <p>
+            We'd love to hear from you! Reach out for inquiries, campus tours,
+            or enrollment information.
+          </p>
+        </div>
+        <div class="contact-content">
+          <div class="contact-info">
+            <h3>Get Touch</h3>
+            <p>
+              Have questions about our programs or want to schedule a visit?
+              Contact us using the information below or fill out the form.
+            </p>
+            <div class="info-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>Address</h4>
+                <p>Cagayan De Oro,Bugo, Mis.Or</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <h4>Phone</h4>
+                <p>09759075430</p>
+              </div>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <p>stevenandrew.flores@ici.edu.ph</p>
+              </div>
+            </div>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="contact-form">
+            <h3>Send Us a Message</h3>
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" />
+              </div>
+              <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+              <button type="submit" class="btn">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h3>About Us</h3>
+            <p>
+              Philippine Southfield is dedicated to academic excellence and
+              character formation, preparing students to become responsible
+              global citizens.
+            </p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+          <div class="footer-column">
+            <h3>Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#programs">Academic Programs</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h3>School Hours</h3>
+            <p>Monday - Friday: 7:30 AM - 5:00 PM</p>
+            <p>Saturday: 8:00 AM - 12:00 PM</p>
+            <p>Sunday: Closed</p>
+          </div>
+          <div class="footer-column">
+            <h3>Newsletter</h3>
+            <p>
+              Subscribe to our newsletter to receive updates about school events
+              and announcements.
+            </p>
+            <form
+              class="newsletter-form"
+              action="tologinform/home.html"
+              id="logout">
+              <div class="form-group">
+                <input type="email" placeholder="Your Email Address" required />
+              </div>
+              <button type="submit" class="btn">Logout</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 Philippine Southfield School. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Enhanced Gallery Modal -->
+    <div id="galleryModal" class="modal">
+      <span class="close">&times;</span>
+      <div class="loader"></div>
+      <div class="modal-content-container">
+        <a class="modal-nav prev">&#10094;</a>
+        <img class="modal-content" id="modalImage" />
+        <a class="modal-nav next">&#10095;</a>
+        <div id="caption" class="modal-caption"></div>
+      </div>
+    </div>
+
+    <script>
+      // Gallery Images Data
+      const galleryImages = [
+        {
+          src: "school/images/IT1.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/love.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/love1.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/love2.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img1.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img2.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img3.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img4.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img5.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img6.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img7.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img8.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img9.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img10.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img11.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img12.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img13.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img14.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img15.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img16.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img17.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img18.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img19.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img20.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img21.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img22.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img23.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img24.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img25.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img26.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img27.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img28.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img29.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img30.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img31.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/IMG32.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img33.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence",
+        },
+        {
+          src: "school/images/img34.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img35.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+        {
+          src: "school/images/img36.jpg",
+          title: "Philippine Southfield",
+          description: "Excellence ",
+        },
+      ];
+
+      // Populate Gallery (same as before)
+      const galleryGrid = document.getElementById("galleryGrid");
+
+      galleryImages.forEach((image, index) => {
+        const galleryItem = document.createElement("div");
+        galleryItem.className = "gallery-item";
+        galleryItem.innerHTML = `
+          <img src="${image.src}" alt="${image.title}" onclick="openModal(${index})">
+          <div class="overlay">
+              <h3>${image.title}</h3>
+              <p>${image.description}</p>
+          </div>
+        `;
+        galleryGrid.appendChild(galleryItem);
+      });
+
+      // Enhanced Modal Functionality
+      const modal = document.getElementById("galleryModal");
+      const modalImg = document.getElementById("modalImage");
+      const captionText = document.getElementById("caption");
+      const closeBtn = document.getElementsByClassName("close")[0];
+      const prevBtn = document.querySelector(".prev");
+      const nextBtn = document.querySelector(".next");
+      const loader = document.querySelector(".loader");
+
+      let currentIndex = 0;
+
+      function openModal(index) {
+        currentIndex = index;
+        modal.classList.add("show");
+        loader.style.display = "block";
+        modalImg.style.display = "none";
+
+        // Preload image
+        const img = new Image();
+        img.onload = function () {
+          modalImg.src = galleryImages[currentIndex].src;
+          updateCaption();
+          loader.style.display = "none";
+          modalImg.style.display = "block";
+        };
+        img.src = galleryImages[currentIndex].src;
+      }
+
+      function updateCaption() {
+        captionText.innerHTML = `
+          <h3>${galleryImages[currentIndex].title}</h3>
+          <p>${galleryImages[currentIndex].description}</p>
+        `;
+      }
+
+      function navigate(direction) {
+        currentIndex += direction;
+
+        // Wrap around if at ends
+        if (currentIndex >= galleryImages.length) {
+          currentIndex = 0;
+        } else if (currentIndex < 0) {
+          currentIndex = galleryImages.length - 1;
+        }
+
+        loader.style.display = "block";
+        modalImg.style.display = "none";
+
+        // Preload next image
+        const img = new Image();
+        img.onload = function () {
+          modalImg.src = galleryImages[currentIndex].src;
+          updateCaption();
+          loader.style.display = "none";
+          modalImg.style.display = "block";
+        };
+        img.src = galleryImages[currentIndex].src;
+      }
+
+      // Event listeners
+      closeBtn.onclick = function () {
+        modal.classList.remove("show");
+      };
+
+      prevBtn.onclick = function (e) {
+        e.stopPropagation();
+        navigate(-1);
+      };
+
+      nextBtn.onclick = function (e) {
+        e.stopPropagation();
+        navigate(1);
+      };
+
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.classList.remove("show");
+        }
+      };
+
+      // Keyboard navigation
+      document.addEventListener("keydown", function (event) {
+        if (modal.classList.contains("show")) {
+          switch (event.key) {
+            case "ArrowLeft":
+              navigate(-1);
+              break;
+            case "ArrowRight":
+              navigate(1);
+              break;
+            case "Escape":
+              modal.classList.remove("show");
+              break;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
